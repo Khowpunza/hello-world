@@ -1,0 +1,21 @@
+sequenceDiagram
+    Operator->>Telescope: verifyAvailability
+    Telescope-->>Operator: returnAvailabilityStatus(status : string)
+
+    Operator->>SciencePlan: loadSciencePlan(planId : int)
+    SciencePlan-->>Operator: returnSciencePlan(planDetails : string)
+
+    Operator->>Telescope: initializeTelescope()
+    Telescope-->>Operator: returnInitialized(status : string)
+
+    Operator->>Telescope: startObservation(planId : int)
+
+    alt Observation Successful
+        Operator->>Telescope: stopObservation(observationId : int)
+        Telescope-->>SciencePlan: saveObservationData(data : string)
+    else Observation Failed
+        Telescope-->>Operator: returnError(errorMessage : string)
+    end
+
+    Operator->>Telescope: shutdownTelescope()
+end
