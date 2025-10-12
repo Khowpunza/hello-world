@@ -1,3 +1,4 @@
+mermaid
 sequenceDiagram
     Operator->>Telescope: verifyAvailability
     Telescope-->>Operator: returnAvailabilityStatus(status : string)
